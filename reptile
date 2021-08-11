@@ -1,0 +1,10 @@
+import requests
+import re
+from bs4 import  BeautifulSoup
+url='http://www.cntour.cn/'
+strhtml=requests.get(url)
+soup=strhtml.text
+res = r'<a .*?>(.*?)</a>'
+data = re.findall(res,soup,re.S|re.M)
+for i in data:
+    print(i)
