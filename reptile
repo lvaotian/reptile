@@ -3,8 +3,7 @@ import re
 from bs4 import  BeautifulSoup
 url='http://www.cntour.cn/'
 strhtml=requests.get(url)
-soup=strhtml.text
-res = r'<a .*?>(.*?)</a>'
-data = re.findall(res,soup,re.S|re.M)
-for i in data:
-    print(i)
+soup=BeautifulSoup(strhtml.text,'lxml')
+data = soup.select('#main > div > div.navBox.mtop')
+for item in data:
+    print(item.get_text())
